@@ -7,13 +7,15 @@ mkdir Plugins
 defaults write com.matryer.BitBar pluginsDirectory "$PWD/Plugins"
 
 open BitBar.app
+chmod +x brew-updates.1h.sh
 
 img_file="$PWD/screenshot.png"
 
-open "bitbar://screenshot?pluginPath=$PWD/cycle_text_and_detail.sh&dst=${img_file}&margin=10"
+open "bitbar://screenshot?pluginPath=$PWD/brew-updates.1h.sh&dst=${img_file}&margin=10"
 
 while [ ! -f "${img_file}" ]
 do
+  echo "#"
   sleep 1
 done
 
