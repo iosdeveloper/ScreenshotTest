@@ -3,7 +3,7 @@
 curl -L https://github.com/matryer/bitbar/releases/download/v2.0.0-beta2/BitBar-v2.0.0-beta2.zip > BitBar.zip
 unzip BitBar.zip
 
-spctl --add "$PWD/BitBar.app"
+sudo spctl --add "$PWD/BitBar.app"
 open BitBar.app
 img_file="$PWD/screenshot.png"
 open "bitbar://screenshot?pluginPath=$PWD/cycle_text_and_detail.sh&dst=${img_file}&margin=10"
