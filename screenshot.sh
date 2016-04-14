@@ -5,6 +5,7 @@ unzip BitBar.zip
 
 sudo spctl --add "$PWD/BitBar.app"
 open BitBar.app
+ls -l
 sleep 5
 img_file="$PWD/screenshot.png"
 open "bitbar://screenshot?pluginPath=$PWD/cycle_text_and_detail.sh&dst=${img_file}&margin=10"
