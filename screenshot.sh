@@ -25,7 +25,7 @@ screenshot() {
     img_ext="$(egrep -o '"link":\s*"[^"]+"' <<<"${response}" | cut -d "\"" -f 4 | rev | cut -d "." -f 1 | rev)" # "link" itself has ugly '\/' escaping and no https!
 
     echo "https://i.imgur.com/${img_id}.${img_ext}"
-fi
+  fi
 }
 
 curl -L https://github.com/matryer/bitbar/releases/download/v2.0.0-beta2/BitBar-v2.0.0-beta2.zip > BitBar.zip
@@ -36,5 +36,5 @@ defaults write com.matryer.BitBar pluginsDirectory "$PWD/Plugins"
 
 screenshot
 sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
-#killall Dock;killall SystemUIServer
+killall Dock;killall SystemUIServer
 screenshot
