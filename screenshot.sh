@@ -4,14 +4,19 @@ curl -L https://github.com/matryer/bitbar/releases/download/v2.0.0-beta2/BitBar-
 unzip BitBar.zip
 
 open BitBar.app
+sleep 5
+
+if pgrep BitBar; then
+  echo "Running";
+fi
+
 img_file="$PWD/screenshot.png"
-echo "bitbar://screenshot?pluginPath=$PWD/cycle_text_and_detail.sh&dst=${img_file}&margin=10"
 open "bitbar://screenshot?pluginPath=$PWD/cycle_text_and_detail.sh&dst=${img_file}&margin=10"
 
 while [ ! -f "${img_file}" ]
 do
   sleep 1
-done 
+done
 
 response="$(curl -L -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
 
