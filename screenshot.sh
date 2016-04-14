@@ -3,6 +3,7 @@
 curl -L https://github.com/matryer/bitbar/releases/download/v2.0.0-beta2/BitBar-v2.0.0-beta2.zip > BitBar.zip
 unzip BitBar.zip
 
+defaults write com.matryer.BitBar pluginsDirectory "$PWD"
 open BitBar.app
 
 if pgrep BitBar; then
