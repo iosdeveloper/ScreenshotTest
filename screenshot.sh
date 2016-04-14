@@ -4,7 +4,6 @@ curl -L https://github.com/matryer/bitbar/releases/download/v2.0.0-beta2/BitBar-
 unzip BitBar.zip
 
 open BitBar.app
-sleep 5
 
 if pgrep BitBar; then
   echo "Running";
