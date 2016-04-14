@@ -18,6 +18,8 @@ screenshot() {
 
   response="$(curl -L -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
 
+  rm "${img_file}"
+
   # JSON parser
   # https://github.com/jomo/imgur-screenshot
   if egrep -q '"success":\s*true' <<<"${response}"; then
@@ -36,5 +38,5 @@ defaults write com.matryer.BitBar pluginsDirectory "$PWD/Plugins"
 
 screenshot
 sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
-killall Dock;killall SystemUIServer
+#killall Dock;killall SystemUIServer
 screenshot
