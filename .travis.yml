@@ -1,3 +1,4 @@
 language: objective-c
 osx_image: xcode7.3
+before_install: brew install dark-mode
 script: ./screenshot.sh
