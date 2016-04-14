@@ -37,6 +37,6 @@ mkdir Plugins
 defaults write com.matryer.BitBar pluginsDirectory "$PWD/Plugins"
 
 screenshot
-sudo defaults write /Library/Preferences/.GlobalPreferences AppleInterfaceTheme Dark
+defaults write NSGlobalDomain AppleInterfaceStyle Dark
 killall Dock;killall SystemUIServer
 screenshot
