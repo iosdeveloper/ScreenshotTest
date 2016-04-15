@@ -11,7 +11,7 @@ screenshot() {
     sleep 1
     let COUNTER+=1
     if [ $COUNTER -ge 30 ]; then
-      echo "timed out."
+      echo " timed out."
       killall BitBar
       return
     fi
@@ -27,18 +27,18 @@ screenshot() {
     img_id="$(egrep -o '"id":\s*"[^"]+"' <<<"${response}" | cut -d "\"" -f 4)"
     img_ext="$(egrep -o '"link":\s*"[^"]+"' <<<"${response}" | cut -d "\"" -f 4 | rev | cut -d "." -f 1 | rev)" # "link" itself has ugly '\/' escaping and no https!
 
-    echo "https://i.imgur.com/${img_id}.${img_ext}"
+    echo ": https://i.imgur.com/${img_id}.${img_ext}"
   fi
 }
 
 defaults write com.apple.dock autohide -bool true; killall Dock
 defaults write com.apple.finder CreateDesktop -bool false; killall Finder
 
-curl -L https://github.com/matryer/bitbar/releases/download/v2.0.0-beta3/BitBar-v2.0.0-beta3.zip > BitBar.zip
-unzip BitBar.zip
+curl -sSL https://github.com/matryer/bitbar/releases/download/v2.0.0-beta3/BitBar-v2.0.0-beta3.zip > BitBar.zip
+unzip -q BitBar.zip
 
-curl -L https://github.com/matryer/bitbar-plugins/archive/master.zip > bitbar-plugins-master.zip
-unzip bitbar-plugins-master.zip
+curl -sSL https://github.com/matryer/bitbar-plugins/archive/master.zip > bitbar-plugins-master.zip
+unzip -q bitbar-plugins-master.zip
 
 defaults write com.matryer.BitBar pluginsDirectory "$PWD/Plugins"
 
@@ -55,7 +55,8 @@ do
     fi
 
     if grep -q "<bitbar.image>" "$f"; then
-  	  echo "$f already has an image! Not taking a screenshot."
+  	  #echo "$f: already has an image! Not taking a screenshot."
+  	  true
     else
       if pgrep BitBar > /dev/null; then
   	    # BitBar is already running.
@@ -65,7 +66,7 @@ do
   	    open BitBar.app
   	  fi
 
-  	  echo "$f"
+  	  echo -n "$f"
       screenshot "$f"
     fi
   fi
@@ -86,7 +87,8 @@ do
     fi
     
     if grep -q "<bitbar.image>" "$f"; then
-  	  echo "Dark mode $f already has an image! Not taking a screenshot."
+  	  #echo "Dark mode $f already has an image! Not taking a screenshot."
+  	  true
     else
       if pgrep BitBar > /dev/null; then
   	    # BitBar is already running.
@@ -96,7 +98,7 @@ do
   	    open BitBar.app
   	  fi
   	  
-  	  echo "Dark mode $f"
+  	  echo -n "$f (dark mode)"
       screenshot "$f"
     fi
   fi
