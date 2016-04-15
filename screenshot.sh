@@ -10,7 +10,7 @@ screenshot() {
   do
     sleep 1
     let COUNTER+=1
-    if [ $COUNTER -ge 30 ]; then
+    if [ $COUNTER -ge 60 ]; then
       echo " timed out."
       killall BitBar
       return
