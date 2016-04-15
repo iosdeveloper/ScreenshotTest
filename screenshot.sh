@@ -3,7 +3,7 @@
 screenshot() {
   img_file="$PWD/screenshot.png"
 
-  open "bitbar://screenshot?pluginPath=$PWD/Plugins/$1&dst=${img_file}&margin=10"
+  open "bitbar://screenshot?pluginPath=$PWD/$1&dst=${img_file}&margin=10"
 
   COUNTER=0
   while [ ! -f "${img_file}" ]
@@ -43,41 +43,32 @@ defaults write com.matryer.BitBar pluginsDirectory "$PWD/Plugins"
 
 chmod -R +x bitbar-plugins-master
 
+open BitBar.app
+
 for f in $(find bitbar-plugins-master -name '*.*');
 do
-  if grep -q "<bitbar.image>" "$f"; then
-  	echo "$f already has an image! Not taking a screenshot."
-  else
-  	if pgrep BitBar; then
-  	  # BitBar is already running.
-  	  true
-  	else
-  	  echo "Launching BitBar..."
-  	  open BitBar.app
-  	fi
-
-  	echo "$f"
-    screenshot "$f"
+  if [ -f "$f" ]; then
+    if grep -q "<bitbar.image>" "$f"; then
+  	  echo "$f already has an image! Not taking a screenshot."
+    else
+  	  echo "$f"
+      screenshot "$f"
+    fi
   fi
 done
 
 killall BitBar
 dark-mode --mode Dark
+open BitBar.app
 
 for f in $(find bitbar-plugins-master -name '*.*');
 do
-  if grep -q "<bitbar.image>" "$f"; then
-  	echo "Dark mode $f already has an image! Not taking a screenshot."
-  else
-  	if pgrep BitBar; then
-  	  # BitBar is already running.
-  	  true
-  	else
-  	  echo "Launching BitBar..."
-  	  open BitBar.app
-  	fi
-  	
-  	echo "Dark mode $f"
-    screenshot "$f"
+  if [ -f "$f" ]; then
+    if grep -q "<bitbar.image>" "$f"; then
+  	  echo "Dark mode $f already has an image! Not taking a screenshot."
+    else
+  	  echo "Dark mode $f"
+      screenshot "$f"
+    fi
   fi
 done
