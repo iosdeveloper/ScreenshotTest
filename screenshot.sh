@@ -47,10 +47,10 @@ chmod -R +x bitbar-plugins-master
 for f in $(find bitbar-plugins-master -name '*.*');
 do
   if [ -f "$f" ]; then
-    if [[ "$f" = "."* ]]; then
+    if [[ "$(basename "$f")" = "."* ]]; then
       continue
     fi
-    if [ "$f" = "README.md" ]; then
+    if [ "$(basename "$f")" = "README.md" ]; then
       continue
     fi
 
@@ -79,10 +79,10 @@ dark-mode --mode Dark
 for f in $(find bitbar-plugins-master -name '*.*');
 do
   if [ -f "$f" ]; then
-    if [[ "$f" = "."* ]]; then
+    if [[ "$(basename "$f")" = "."* ]]; then
       continue
     fi
-    if [ "$f" = "README.md" ]; then
+    if [ "$(basename "$f")" = "README.md" ]; then
       continue
     fi
     
