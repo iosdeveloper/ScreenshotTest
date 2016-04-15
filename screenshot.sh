@@ -17,7 +17,7 @@ screenshot() {
     fi
   done
 
-  response="$(curl -sSL -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
+  #response="$(curl -sSL -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
 
   rm "${img_file}"
 
@@ -65,6 +65,7 @@ do
 done
 
 killall BitBar
+dark-mode --mode Dark
 dark-mode --mode Dark
 
 for f in $(find bitbar-plugins-master -name '*.*');
