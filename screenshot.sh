@@ -17,8 +17,10 @@ screenshot() {
     fi
   done
 
-  #response="$(curl -sSL -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
-
+  if [ "$2" = "true" ]; then
+    response="$(curl -sSL -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
+  fi
+  
   rm "${img_file}"
 
   # JSON parser
@@ -59,7 +61,7 @@ do
   	  fi
 
   	  echo "$f"
-      screenshot "$f"
+      screenshot "$f" "false"
     fi
   fi
 done
@@ -83,7 +85,7 @@ do
   	  fi
   	  
   	  echo "Dark mode $f"
-      screenshot "$f"
+      screenshot "$f" "true"
     fi
   fi
 done
