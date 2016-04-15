@@ -5,9 +5,14 @@ screenshot() {
 
   open "bitbar://screenshot?pluginPath=$PWD/Plugins/$1&dst=${img_file}&margin=10"
 
+  COUNTER=0
   while [ ! -f "${img_file}" ]
   do
     sleep 1
+    let COUNTER+=1
+    if [ $COUNTER -ge 10 ]; then
+      break
+    fi
   done
 
   response="$(curl -L -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
