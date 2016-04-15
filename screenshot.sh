@@ -3,11 +3,11 @@
 screenshot() {
   open BitBar.app
 
-  #chmod +x Plugins/cycle_text_and_detail.sh
+  chmod +x Plugins/brew-updates.1h.sh
 
   img_file="$PWD/screenshot.png"
 
-  open "bitbar://screenshot?pluginPath=$PWD/Plugins/cycle_text_and_detail.sh&dst=${img_file}&margin=10"
+  open "bitbar://screenshot?pluginPath=$PWD/Plugins/brew-updates.1h.sh&dst=${img_file}&margin=10"
 
   while [ ! -f "${img_file}" ]
   do
