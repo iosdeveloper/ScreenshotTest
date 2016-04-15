@@ -3,8 +3,6 @@
 screenshot() {
   open BitBar.app
 
-  chmod +x Plugins/brew-updates.1h.sh
-
   img_file="$PWD/screenshot.png"
 
   open "bitbar://screenshot?pluginPath=$PWD/Plugins/brew-updates.1h.sh&dst=${img_file}&margin=10"
@@ -37,6 +35,8 @@ curl -L https://github.com/matryer/bitbar/releases/download/v2.0.0-beta2/BitBar-
 unzip BitBar.zip
 
 defaults write com.matryer.BitBar pluginsDirectory "$PWD/Plugins"
+
+chmod +x Plugins/brew-updates.1h.sh
 
 screenshot
 dark-mode --mode Dark
