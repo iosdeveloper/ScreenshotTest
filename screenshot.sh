@@ -12,6 +12,7 @@ screenshot() {
     let COUNTER+=1
     if [ $COUNTER -ge 10 ]; then
       echo "timed out."
+      killall BitBar
       return
     fi
   done
