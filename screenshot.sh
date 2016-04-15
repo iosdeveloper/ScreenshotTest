@@ -10,17 +10,15 @@ screenshot() {
   do
     sleep 1
     let COUNTER+=1
-    if [ $COUNTER -ge 10 ]; then
+    if [ $COUNTER -ge 30 ]; then
       echo "timed out."
       killall BitBar
       return
     fi
   done
 
-  if [ "$2" = "true" ]; then
-    response="$(curl -sSL -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
-  fi
-  
+  response="$(curl -sSL -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
+
   rm "${img_file}"
 
   # JSON parser
@@ -49,6 +47,13 @@ chmod -R +x bitbar-plugins-master
 for f in $(find bitbar-plugins-master -name '*.*');
 do
   if [ -f "$f" ]; then
+    if [[ "$f" = "."* ]]; then
+      continue
+    fi
+    if [ "$f" = "README.md" ]; then
+      continue
+    fi
+
     if grep -q "<bitbar.image>" "$f"; then
   	  echo "$f already has an image! Not taking a screenshot."
     else
@@ -61,7 +66,7 @@ do
   	  fi
 
   	  echo "$f"
-      screenshot "$f" "false"
+      screenshot "$f"
     fi
   fi
 done
@@ -73,6 +78,13 @@ dark-mode --mode Dark
 for f in $(find bitbar-plugins-master -name '*.*');
 do
   if [ -f "$f" ]; then
+    if [[ "$f" = "."* ]]; then
+      continue
+    fi
+    if [ "$f" = "README.md" ]; then
+      continue
+    fi
+    
     if grep -q "<bitbar.image>" "$f"; then
   	  echo "Dark mode $f already has an image! Not taking a screenshot."
     else
@@ -85,7 +97,7 @@ do
   	  fi
   	  
   	  echo "Dark mode $f"
-      screenshot "$f" "true"
+      screenshot "$f"
     fi
   fi
 done
