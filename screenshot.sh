@@ -30,18 +30,35 @@ defaults write com.apple.finder CreateDesktop -bool false; killall Finder
 curl -L https://github.com/matryer/bitbar/releases/download/v2.0.0-beta3/BitBar-v2.0.0-beta3.zip > BitBar.zip
 unzip BitBar.zip
 
+curl -L https://github.com/matryer/bitbar-plugins/archive/master.zip > bitbar-plugins-master.zip
+unzip bitbar-plugins-master.zip
+
 defaults write com.matryer.BitBar pluginsDirectory "$PWD/Plugins"
 
-chmod +x Plugins/brew-updates.1h.sh
+chmod -R +x bitbar-plugins-master
 
 open BitBar.app
 
-screenshot cycle_text_and_detail.sh
-screenshot brew-updates.1h.sh
+for f in $(find /bitbar-plugins-master -name '*.*');
+do
+  if grep -q "<bitbar.image>" "$f"; then
+  	echo "$f already has an image! Not taking a screenshot."
+  else
+  	echo "$f"
+    screenshot "$f"
+  fi
+done
 
 killall BitBar
 dark-mode --mode Dark
 open BitBar.app
 
-screenshot cycle_text_and_detail.sh
-screenshot brew-updates.1h.sh
+for f in $(find /bitbar-plugins-master -name '*.*');
+do
+  if grep -q "<bitbar.image>" "$f"; then
+  	echo "Dark mode $f already has an image! Not taking a screenshot."
+  else
+  	echo "Dark mode $f"
+    screenshot "$f"
+  fi
+done
