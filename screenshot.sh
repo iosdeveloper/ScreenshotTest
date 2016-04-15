@@ -50,7 +50,7 @@ do
     if grep -q "<bitbar.image>" "$f"; then
   	  echo "$f already has an image! Not taking a screenshot."
     else
-      if pgrep BitBar; then
+      if pgrep BitBar > /dev/null; then
   	    # BitBar is already running.
   	    true
   	  else
@@ -73,7 +73,7 @@ do
     if grep -q "<bitbar.image>" "$f"; then
   	  echo "Dark mode $f already has an image! Not taking a screenshot."
     else
-      if pgrep BitBar; then
+      if pgrep BitBar > /dev/null; then
   	    # BitBar is already running.
   	    true
   	  else
