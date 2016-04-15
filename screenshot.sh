@@ -50,9 +50,10 @@ do
   else
   	if pgrep BitBar; then
   	  # BitBar is already running.
+  	  true
   	else
   	  echo "Launching BitBar..."
-      open BitBar.app
+  	  open BitBar.app
   	fi
 
   	echo "$f"
@@ -70,9 +71,10 @@ do
   else
   	if pgrep BitBar; then
   	  # BitBar is already running.
+  	  true
   	else
   	  echo "Launching BitBar..."
-      open BitBar.app
+  	  open BitBar.app
   	fi
   	
   	echo "Dark mode $f"
