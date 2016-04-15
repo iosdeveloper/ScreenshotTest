@@ -11,7 +11,8 @@ screenshot() {
     sleep 1
     let COUNTER+=1
     if [ $COUNTER -ge 10 ]; then
-      break
+      echo "timed out."
+      return
     fi
   done
 
