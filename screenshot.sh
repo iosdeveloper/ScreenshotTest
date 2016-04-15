@@ -17,7 +17,7 @@ screenshot() {
     fi
   done
 
-  response="$(curl -L -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
+  response="$(curl -sSL -H "Authorization: Client-ID $IMGUR_API_KEY" -F "image=@\"${img_file}\"" https://api.imgur.com/3/image)"
 
   rm "${img_file}"
 
